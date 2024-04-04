@@ -1,0 +1,37 @@
+{
+  "name": "demo_playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prerun:test": "rimraf reports/allure-results && mkdir reports/allure-results",
+    "run:test": "npx playwright test tests/enotes.spec.ts",
+    "run:test:ui": "npx playwright test --ui",
+    "allure:reporter": "npx allure serve reports/allure-results",
+    "lint": "eslint '**/*.{ts,json}'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint"
+    ]
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.12.3",
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
+    "allure-commandline": "^2.27.0",
+    "allure-playwright": "^2.15.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.3"
+  }
+}
