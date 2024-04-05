@@ -2,9 +2,12 @@ import { test } from "@@/page-objects/fixtures/pageFixtures";
 
 import { CREDENTIALS } from "@@/data/credentials";
 import { PRODUCTS } from "@@/data/products";
+import * as apiServiceUtil from "@@/utils/apiServiceUtil";
 
 test.describe("LoginPage", () => {
-  test.beforeEach(async ({ homePage, loginPage }) => {
+  test.beforeEach(async ({ page, homePage, loginPage }) => {
+    await apiServiceUtil.handleHeaderObjectForUrl(page, "/basket/get");
+
     await homePage.visitPage();
     await homePage.navBar.selectLoginButton();
     await loginPage.typeTextToLoginInput(CREDENTIALS.TEST_USER.LOGIN);
@@ -15,7 +18,7 @@ test.describe("LoginPage", () => {
   });
 
   test.afterEach(async ({ basketApi }) => {
-    await basketApi.clear();
+    await basketApi.clear(apiServiceUtil.getHeaderObject());
   });
 
   // TODO: error `ReferenceError: showToast is not defined` is displayed when click on empty basket
